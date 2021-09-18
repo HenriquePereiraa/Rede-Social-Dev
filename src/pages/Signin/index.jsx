@@ -1,17 +1,19 @@
-import { Typography, Grid, Box, Avatar, Button, Link } from "@material-ui/core";
+import { Typography, Grid, Box, Avatar, Button, Link, FormHelperText } from "@material-ui/core";
 import { LockOutlined } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
-import React from "react";
+import React, { useState } from "react";
 import palette from "../../theme/palette";
 import { TextField } from "@material-ui/core/";
+import { useHistory } from "react-router";
+import authService from "../../service/authService";
 
 function CopyRight() {
-    return(
-        <Typography align="center" variant="body2">
-            Copyright &copy;
-            {'' + new Date().getFullYear()}
-        </Typography>
-    )
+  return (
+    <Typography align="center" variant="body2">
+      Copyright &copy;
+      {"" + new Date().getFullYear()}
+    </Typography>
+  );
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -23,23 +25,41 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "none",
-    padding:'2px',
-    textAlign:'center'
+    padding: "2px",
+    textAlign: "center",
   },
   avatar: {
     background: palette.primary.main,
     marginBottom: theme.spacing(1),
   },
   button: {
-    margin:"8px 0",
+    margin: "8px 0",
   },
   form: {
-      margin:"4px",
-  }
+    margin: "4px",
+  },
 }));
 
 const Signin = () => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  async function handleSignIn() {
+    // axios.post("api/home/login").then((response) => console.log(response));
+    //uilizando funcções asnyc
+    try{
+      await authService.signIn(email,password);
+      //200
+      history.push('/');
+    } catch(error) {
+      setErrorMessage(error.response.data.message);
+    }
+  };
+
   return (
     <Grid container className={classes.root}>
       <Grid
@@ -86,8 +106,10 @@ const Signin = () => {
               id="email"
               label="E-mail"
               name="email"
+              onChange={(event) => setEmail(event.target.value)}
               autoComplete="email"
               autoFocus
+              value={email}
             />
 
             <TextField
@@ -99,8 +121,10 @@ const Signin = () => {
               label="Senha"
               name="password"
               type="password"
+              onChange={(event) => setPassword(event.target.value)}
               autoComplete="current-password"
               autoFocus
+              value={password}
             />
 
             <Button
@@ -108,21 +132,29 @@ const Signin = () => {
               fullWidth
               variant="contained"
               color="primary"
+              onClick={handleSignIn}
             >
               Entrar
             </Button>
 
-            <Grid container>
-                <Grid item>
-                    <Link>Esqueceu sua Senha</Link>
-                </Grid>
+            {
+              errorMessage &&
+              <FormHelperText error>
+                {errorMessage}
+              </FormHelperText>
+            }
 
-                <Grid item>
-                    <Link>Não tem uma conta? Registre-se</Link>
-                </Grid>
+            <Grid container>
+              <Grid item>
+                <Link>Esqueceu sua Senha</Link>
+              </Grid>
+
+              <Grid item>
+                <Link>Não tem uma conta? Registre-se</Link>
+              </Grid>
             </Grid>
           </form>
-        <CopyRight/>
+          <CopyRight />
         </Box>
       </Grid>
     </Grid>

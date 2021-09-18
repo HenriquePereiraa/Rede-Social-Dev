@@ -3,7 +3,7 @@ import theme from './theme'
 import Homes from "./pages/Home/Home";
 import Signin from "./pages/Signin";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
+import './mock';
 
 function App() {
   return (
