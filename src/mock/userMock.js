@@ -1,11 +1,15 @@
 import mock from '../utils/mock';
 
 
-// mock.onPost('/api/home/login').reply(200, {
-//     'id':1,
-//     'username':'Henrique Pereira',
-//     'email':'henrique@teste.com'
-// });
+mock.onPost('/api/home/me').reply(200, {
+    user:{
+        id:1,
+        name:'Henrique Pereira',
+        username:'henriquepereira',
+        email:'henrique@teste.com',
+        avatar:'/images/avatars/avatar_1.jpeg'
+    }
+});
 
 mock.onPost('/api/home/login').reply((config) =>{
 

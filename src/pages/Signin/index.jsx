@@ -4,10 +4,9 @@ import { makeStyles } from "@material-ui/styles";
 import React, { useState } from "react";
 import palette from "../../theme/palette";
 import { TextField } from "@material-ui/core/";
-import authService from "../../service/authService";
 import { useNavigate } from "react-router";
-import { useSelector, useDispatch } from "react-redux";
-import signIn from "../../actions/accountAction";
+import { useDispatch } from "react-redux";
+import { signIn } from "../../actions/accountAction";
 
 function CopyRight() {
   return (

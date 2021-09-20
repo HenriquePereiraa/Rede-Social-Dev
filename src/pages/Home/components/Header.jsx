@@ -33,8 +33,7 @@ const useStyles = makeStyles({
 
 const Header = () => {
   const classes = useStyles();
-  const user = useSelector((state) => state.user);
-  console.log(user)
+  const account = useSelector((state) => state.account.user);
 
   return (
     <AppBar position="fixed" color="" className={classes.appBar}>
@@ -48,18 +47,8 @@ const Header = () => {
           <SvgIcon className={classes.bell}>
             <Bell/>
           </SvgIcon>
-          <Avatar alt="Henry Sharp" src={user && user.avatar} />
+          <Avatar alt="Henry Sharp" src={account && account.user.avatar} />
         </div>
-
-        {/* <div className="left">
-          <a href="/">Conecta Dev</a>
-          <input type="text" name="" id="" />
-        </div>
-        <div className="right">
-         
-          <span>img1</span>
-          <span>img2</span>
-        </div> */}
       </Toolbar>
     </AppBar>
   );

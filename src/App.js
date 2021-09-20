@@ -7,16 +7,19 @@ import "./mock";
 import GuestRouter from "./routes/GuestRouter";
 import store from "./store";
 import { Provider } from "react-redux";
+import Auth from "./components/Auth";
 
 function App() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
+        <Auth>
           <Routes>
             <Route path="/" element={<Homes />} />
             <GuestRouter path="/signin" element={<Signin />} />
           </Routes>
+        </Auth>
         </BrowserRouter>
       </ThemeProvider>
     </Provider>
