@@ -19,7 +19,8 @@ mock.onPost('/api/home/login').reply((config) =>{
         id:1,
         name:'Henrique Pereira',
         username:'henriquepereira',
-        email:'henrique@teste.com'
+        email:'henrique@teste.com',
+        avatar:'/images/avatars/avatar_1.jpeg'
     }
     return [200, { user }]
 })

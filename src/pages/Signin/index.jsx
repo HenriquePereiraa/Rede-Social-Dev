@@ -4,8 +4,10 @@ import { makeStyles } from "@material-ui/styles";
 import React, { useState } from "react";
 import palette from "../../theme/palette";
 import { TextField } from "@material-ui/core/";
-import { useHistory } from "react-router";
 import authService from "../../service/authService";
+import { useNavigate } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import signIn from "../../actions/accountAction";
 
 function CopyRight() {
   return (
@@ -42,23 +44,24 @@ const useStyles = makeStyles((theme) => ({
 
 const Signin = () => {
   const classes = useStyles();
-  const history = useHistory();
+  // const history = useHistory();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const dispatch = useDispatch();
 
   async function handleSignIn() {
-    // axios.post("api/home/login").then((response) => console.log(response));
-    //uilizando funcções asnyc
     try{
-      await authService.signIn(email,password);
-      //200
-      history.push('/');
+      await dispatch(signIn(email,password))
+      navigate('/');
     } catch(error) {
       setErrorMessage(error.response.data.message);
     }
   };
+
+
 
   return (
     <Grid container className={classes.root}>
