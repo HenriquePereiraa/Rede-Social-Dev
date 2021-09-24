@@ -1,4 +1,4 @@
-import React,{ useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import authService from '../../service/authService';
 import {setUserData} from '../../actions/accountAction';
 import { useDispatch } from 'react-redux';
@@ -10,7 +10,7 @@ const Auth = ({children}) => {
 
     const initAuth = useCallback( async () => {
         if(authService.isAuthenticated()) {
-            //recuperar od dados novamente do usuario logado
+            //recuperar os dados novamente do usuario logado
             await dispatch(setUserData());
         }
     },[dispatch])

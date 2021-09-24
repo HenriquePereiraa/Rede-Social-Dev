@@ -46,6 +46,15 @@ class AuthService {
   isAuthenticated = () => {
     return !!this.getToken();
   };
+
+  removeToken = () => {
+    localStorage.removeItem('acessToken');
+  }
+
+
+  signOut = () => {
+    this.removeToken();
+  }
 }
 
 const authService = new AuthService();
