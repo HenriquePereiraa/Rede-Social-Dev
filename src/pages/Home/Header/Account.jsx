@@ -3,7 +3,7 @@ import { Avatar } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { signOut } from "../../../../actions/accountAction";
+import {signOut} from '../../../actions/accountAction'
 import { useNavigate } from "react-router";
 
 const Account = () => {
@@ -26,7 +26,7 @@ const Account = () => {
     handleClose();
     //logoff  no app atraves de uma actions (redux)
     dispatch(signOut());
-    navigator('/');
+    navigator('/signIn');
   };
 
   const handleLogar = () => {

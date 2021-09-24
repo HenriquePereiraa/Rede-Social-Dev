@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/styles";
 import Account from "./Account";
 import Notification from "./Notifications";
 import WritePost from "./WritePost";
+import { useNavigate } from "react-router";
 
 const useStyles = makeStyles({
   appBar: {
@@ -14,6 +15,7 @@ const useStyles = makeStyles({
   },
   img: {
     maxHeight: 45,
+    cursor:'pointer'
   },
   grow: {
     flexGrow: 1,
@@ -30,10 +32,15 @@ const useStyles = makeStyles({
 const Header = () => {
   const classes = useStyles();
 
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/');
+  }
+
   return (
     <AppBar position="fixed" color="" className={classes.appBar}>
       <Toolbar>
-        <img className={classes.img} src="/images/logo.png" alt="logo" />
+        <img className={classes.img} src="/images/logo.png" alt="logo" onClick={handleClick}/>
         <div className={classes.grow}></div>
         <div className={classes.useSelection}>
           <WritePost />

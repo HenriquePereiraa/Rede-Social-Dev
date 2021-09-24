@@ -14,12 +14,12 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-        <Auth>
-          <Routes>
-            <Route path="/" element={<Homes />} />
-            <GuestRouter path="/signin" element={<Signin />} />
-          </Routes>
-        </Auth>
+          <Auth>
+            <Routes>
+              <GuestRouter path="/signin" element={<Signin />} />
+              <Route path="//*" element={<Homes />} />
+            </Routes>
+          </Auth>
         </BrowserRouter>
       </ThemeProvider>
     </Provider>

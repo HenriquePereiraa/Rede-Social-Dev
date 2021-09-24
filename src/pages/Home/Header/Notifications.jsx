@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { Popover } from "@material-ui/core";
-import { getNotifications } from "../../../../actions/notificationsAction";
+import {getNotifications} from '../../../actions/notificationsAction'
 import {
   Bell as BellIcon,
   Star as StarIcon,
