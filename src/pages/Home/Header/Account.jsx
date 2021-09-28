@@ -26,7 +26,6 @@ const Account = () => {
     handleClose();
     //logoff  no app atraves de uma actions (redux)
     dispatch(signOut());
-    navigator('/signIn');
   };
 
   const handleLogar = () => {
