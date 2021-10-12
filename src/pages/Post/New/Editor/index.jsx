@@ -1,10 +1,11 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useContext } from "react";
 import { makeStyles } from "@material-ui/styles";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import { useDropzone } from "react-dropzone";
+import {PostContext} from '../../../../context/PostContext'
 
 const useStyles = makeStyles((theme) => ({
     image: {
@@ -23,8 +24,11 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const PostEditor = ({image, setImage, tags, setTags, title, setTitle, markdown, setMarkdown}) => {
+const PostEditor = () => {
   const classes = useStyles();
+  const ctx = useContext(PostContext);
+
+  const {image, setImage, tags, setTags, title, setTitle, markdown, setMarkdown} = ctx;
 
   const hashTags = [
     { title: "react.js" },
@@ -69,7 +73,7 @@ const PostEditor = ({image, setImage, tags, setTags, title, setTitle, markdown, 
           placeholder="Titulo"
           fullWidth
           value={title}
-          onChange={(event) => setTitle(event.target.value)}
+          onChange={setTitle}
         />
       </Box>
       <Box mb={2}>
@@ -88,7 +92,7 @@ const PostEditor = ({image, setImage, tags, setTags, title, setTitle, markdown, 
       <textarea
         className={classes.textArea}
         value={markdown}
-        onChange={(event) => setMarkdown(event.target.value)}
+        onChange={setMarkdown}
       ></textarea>
     </>
   );
